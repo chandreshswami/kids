@@ -1,7 +1,8 @@
-(function(){
+(function(window){
   'use strict';
 
   var alphabetsListContainer = document.getElementById('alphabetsListContainer');
+  var randomImagesContainer = document.getElementById('randomImagesContainer');
 
   var imagesList = {
     'a': '',
@@ -15,6 +16,8 @@
       image: imagesList.a
     }
   };
+
+  window.app = app;
 
   // querySelector, jQuery style
   var $ = function (selector) {
@@ -42,27 +45,43 @@
   }
 
   function getAlphabetLink(alphabet){
-    return '<li><a href="javascript:void(0)" data-key="' + alphabet + '">' + alphabet + '</a></li>';
+    var path = getImagePath() + alphabet + '.png';
+    return '<li><a href="javascript:void(0)" data-key="' + alphabet + '">' + getImage(path) + '</a></li>';
   }
 
   function populateAlphabets() {
     var listOfAlphabets = app.listOfAlphabets;
     var list = [];
 
-    for(var i=0; i < listOfAlphabets.length; i++){
-      list.push(getAlphabetLink(listOfAlphabets[i]));
+    if(listOfAlphabets !== undefined && listOfAlphabets.length > 0) {
+      for(var i=0; i < listOfAlphabets.length; i++){
+        list.push(getAlphabetLink(listOfAlphabets[i]));
+      }
+      alphabetsListContainer.innerHTML = list.join('');
+      attachClickHandlersOnListAnchors();
     }
-    alphabetsListContainer.innerHTML = list.join('');
-    attachClickHandlersOnListAnchors();
+  }
+
+  function getImagePath(){
+    return 'images/';
+  }
+
+  function getImage(path){
+    return '<img src="'+ path +'"></img>';
   }
 
   function populateRandomImages() {
-    // body...
+    var imagePath = getImagePath();
+    var images = app.listOfAlphabets;
+    console.log(imagePath);
+    //for()
+    //randomImagesContainer.innerHTML = getImage(imagePath);
   }
 
   function init(){
     populateAlphabets();
+    populateRandomImages();
   }
   init();
 
-})();
+})(window);
