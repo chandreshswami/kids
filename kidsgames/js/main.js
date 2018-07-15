@@ -1,6 +1,9 @@
 (function(window){
   'use strict';
 
+  var imageExtension = {
+    "png": ".png"
+  };
   var alphabetsListContainer = document.getElementById('alphabetsListContainer');
   var randomImagesContainer = document.getElementById('randomImagesContainer');
 
@@ -72,10 +75,14 @@
 
   function populateRandomImages() {
     var imagePath = getImagePath();
-    var images = app.listOfAlphabets;
-    console.log(imagePath);
-    //for()
-    //randomImagesContainer.innerHTML = getImage(imagePath);
+    var listOfAlphabets = app.listOfAlphabets;
+    var images = [];
+
+    for(var i = 0; i < listOfAlphabets.length; i++){
+      var img = getImagePath() + listOfAlphabets[i] + imageExtension.png;
+      images.push(getImage(img));
+    }
+    randomImagesContainer.innerHTML = images.join('');
   }
 
   function init(){
