@@ -1,7 +1,9 @@
 (function(){
   'use strict';
 
-  var imagesList: {
+  var alphabetsListContainer = document.getElementById('alphabetsListContainer');
+
+  var imagesList = {
     'a': '',
     'b': ''
   };
@@ -14,14 +16,44 @@
     }
   };
 
+  // querySelector, jQuery style
+  var $ = function (selector) {
+    return document.querySelector(selector);
+  };
 
-  function populateAplhabets() {
-    var ele = document.getElementById('alphabetsListContainer');
-    var list = app.listOfAlphabets;
+  function selectAlphabet(selectedAlphabet) {
+    var dataKey = this.getAttribute("data-key");
+    app.selected.alphabet = dataKey;
+    $("#selectedAlphabet").innerHTML = app.selected.alphabet;
+  }
 
-    for(var i=0; i < list.length; i++){
+  function attachClickHandlersOnListAnchors(){
 
+    // Iterate over #links <a>
+    // Use querySelector to target #links and then get tag names <a>
+    var links = $('#alphabetsListContainer').getElementsByTagName('a');
+
+    // For each <a> inside #links
+    for (var i = 0; i < links.length; i++) {
+      var link = links[i];
+      // <a> onclick, runAlert function
+      link.onclick = selectAlphabet;
     }
+  }
+
+  function getAlphabetLink(alphabet){
+    return '<li><a href="javascript:void(0)" data-key="' + alphabet + '">' + alphabet + '</a></li>';
+  }
+
+  function populateAlphabets() {
+    var listOfAlphabets = app.listOfAlphabets;
+    var list = [];
+
+    for(var i=0; i < listOfAlphabets.length; i++){
+      list.push(getAlphabetLink(listOfAlphabets[i]));
+    }
+    alphabetsListContainer.innerHTML = list.join('');
+    attachClickHandlersOnListAnchors();
   }
 
   function populateRandomImages() {
@@ -29,7 +61,8 @@
   }
 
   function init(){
-    populateAplhabets();
+    populateAlphabets();
   }
+  init();
 
 })();
