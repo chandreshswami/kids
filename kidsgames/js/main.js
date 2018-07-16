@@ -62,7 +62,7 @@
     var path = getImagePath() + dataKey + '.png';
     app.selected.alphabet = dataKey;
 
-    $("#selectedAlphabetImage").innerHTML = getImage(path, 150, 150);
+    $("#selectedAlphabetImage").innerHTML = getImage(path, 80, 80);
 
     // Clear images containers
     alphabetImagesContainer.innerHTML = "";

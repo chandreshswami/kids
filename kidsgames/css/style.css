@@ -2,6 +2,7 @@
 	border: 1px solid #dcdcdc;
 	margin: 2px;
 	padding: 2px;
+	border-radius: 5px;
 }
 
 .listContainer.aplhabetsContainer li {
@@ -10,6 +11,7 @@
 	text-align: center;
 	vertical-align: middle;
 	background: #ffffff;
+	margin: 0 0 5px 5px;
 }
 
 .listContainer.aplhabetsContainer li  a {
@@ -18,4 +20,9 @@
 	text-align: center;
 	vertical-align: middle;
 	display: table-cell;
+}
+
+.selectedAlphabetImage {
+	text-align: center;
+	margin-top: 100%;
 }
