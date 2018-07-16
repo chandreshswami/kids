@@ -11,26 +11,60 @@
   </head>
   <body>
     <!-- Header container -->
-    <div id="header" class="container"></div>
+    <div id="header" class="container">
+      <!-- <script>
+        (function() {
+          var cx = '006988401151571420619:noo7xhxukmw';
+          var gcse = document.createElement('script');
+          gcse.type = 'text/javascript';
+          gcse.async = true;
+          gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(gcse, s);
+        })();
+      </script>
+      <gcse:search></gcse:search> -->
+    </div>
 
     <!-- Main Container -->
     <div id="mainContainer">
 
-      <div id="listOfAlphabets" class="container well">
-        <ul id="alphabetsListContainer" class="list-inline"></ul>
-      </div>
+      <section id="main">
+        <div class="">
+          <div class="row container">
+            <div class="col-md-3">
+              <div class="list-group">
+                <button class="list-group-item" onclick="selectedList('learnAlphabet')">
+                  Learn Alphabets
+                </button>
+                <button class="list-group-item"  onclick="selectedList('matchAlphabet')">
+                  Match Alphabets
+                </button>
+              </div>
+              <div id="selectedAlphabetImage"></div>
+            </div>
 
-      <div id="alphabetImagesContainer" class="container"></div>
-      <div id="randomImagesContainer"></div>
+            <div class="col-md-9">
+              <div id="listOfAlphabets" class="container well">
+                <ul id="alphabetsListContainer" class="list-inline"></ul>
+              </div>
+
+              <div id="alphabetImagesContainer" class="container"></div>
+              <div id="randomImagesContainer" class="container"></div>
+            </div>
+          </div>
+        </div>
+      </section>
       <!-- <canvas></canvas> -->
-
     </div>
 
     <!-- Footer container -->
     <div id="footer"></div>
 
     <!-- Scripts -->
+    <script src="js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>
+
     <!-- <script src="js/canvas.js"></script> -->
   </body>
 </html>

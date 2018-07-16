@@ -1,5 +1,5 @@
-(function(window){
-  'use strict';
+//(function(window){
+  //'use strict';
 
   var imageExtension = {
     "png": ".png",
@@ -7,6 +7,10 @@
     "jpeg": ".jpeg",
     "gif": ".gif"
   },
+  listItem = {
+    "learnAlphabet": "learnAlphabet",
+    "matchAlphabet": "matchAlphabet"
+  };
   alphabetsListContainer = document.getElementById('alphabetsListContainer'),
   alphabetImagesContainer = document.getElementById('alphabetImagesContainer'),
   randomImagesContainer = document.getElementById('randomImagesContainer'),
@@ -42,7 +46,7 @@
     listOfAlphabets : ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'w', 'x', 'y', 'z'],
     selected: {
       alphabet: 'a',
-      image: imagesList.a
+      listItem: listItem.learnAlphabet
     }
   };
 
@@ -55,8 +59,23 @@
 
   function selectAlphabet(selectedAlphabet) {
     var dataKey = this.getAttribute("data-key");
+    var path = getImagePath() + dataKey + '.png';
     app.selected.alphabet = dataKey;
-    selecteAlphabetImages();
+
+    $("#selectedAlphabetImage").innerHTML = getImage(path, 150, 150);
+
+    // Clear images containers
+    alphabetImagesContainer.innerHTML = "";
+    randomImagesContainer.innerHTML = "";
+
+    if(app.selected.listItem === listItem.learnAlphabet){
+      var selectedAlphabetImages = getSelectedAlphabetImages();
+      //console.log("selectedAlphabetImages ::", selectedAlphabetImages);
+      alphabetImagesContainer.innerHTML = createUnorderedList('alphabetList', 'list-inline', selectedAlphabetImages.join(''));
+    } else if(app.selected.listItem === listItem.matchAlphabet){
+      var randomImagesArray = populateRandomImages();
+      randomImagesContainer.innerHTML = createUnorderedList('alphabetList', 'list-inline', randomImagesArray.join(''));
+    }
   }
 
   function attachClickHandlersOnListAnchors(){
@@ -109,35 +128,88 @@
     return '<li class="' + classes + '">' + txt + '</li>';
   }
 
-  function selecteAlphabetImages(){
+  function getSelectedAlphabetImages(){
     var imagePath = getImagePath(),
     selectedAlphabet = app.selected.alphabet,
     selectedAlphabetImages = imagesList[selectedAlphabet],
     alphabetImages = [];
 
     for(var i = 0; i < selectedAlphabetImages.length; i++){
-      var img = getImagePath() + selectedAlphabetImages[i];
+      var img = imagePath + selectedAlphabetImages[i];
       alphabetImages.push(createList('alphabetImage', getImage(img, 200, 200)));
     }
-    alphabetImagesContainer.innerHTML = createUnorderedList('alphabetList', 'list-inline', alphabetImages.join(''));
+
+    return alphabetImages;
+  }
+
+  function getRandomImagesfromPool(){
+    var listOfAlphabets = app.listOfAlphabets;
+    var allImagesList = imagesList;
+    var pool = [];
+
+    for(var i=0; i < listOfAlphabets.length; i++){
+      var alphabet = listOfAlphabets[i]; // 'a', 'b' and so on
+
+      if(listOfAlphabets[i] !== app.selected.alphabet){ // Ignore selected alphabet images
+
+        for(var j=0; j < allImagesList[alphabet].length; j++){
+          var img = getImagePath() + allImagesList[alphabet][j];
+          pool.push(getImage(img, 200, 200));
+        }
+      }
+    }
+
+    return pool;
+  }
+
+  function getRandom(arr, n) {
+    var result = new Array(n),
+    len = arr.length,
+    taken = new Array(len);
+
+    if (n > len)
+      throw new RangeError("getRandom: more elements taken than available");
+    while (n--) {
+      var x = Math.floor(Math.random() * len);
+      result[n] = arr[x in taken ? taken[x] : x];
+      taken[x] = --len in taken ? taken[len] : len;
+    }
+    return result;
+  }
+
+  /**
+   * Shuffles array in place.
+   * @param {Array} a items An array containing the items.
+   */
+  function shuffle(a) {
+    var j, x, i;
+
+    for (i = a.length - 1; i > 0; i--) {
+      j = Math.floor(Math.random() * (i + 1));
+      x = a[i];
+      a[i] = a[j];
+      a[j] = x;
+    }
+    return a;
   }
 
   function populateRandomImages() {
-    var imagePath = getImagePath(),
-    listOfAlphabets = app.listOfAlphabets,
-    images = [];
+    var allAlphabetImages = getRandomImagesfromPool(),
+    selectedAlphabetImages = getSelectedAlphabetImages(),
+    randomImages = getRandom(allAlphabetImages, 15),
+    mergedImages = selectedAlphabetImages.concat(randomImages);
 
-    for(var i = 0; i < listOfAlphabets.length; i++){
-      var img = getImagePath() + listOfAlphabets[i] + imageExtension.png;
-      images.push(getImage(img));
-    }
-    randomImagesContainer.innerHTML = images.join('');
+    return shuffle(mergedImages);
+  }
+
+  function selectedList(listItem){
+    app.selected.listItem = listItem;
   }
 
   function init(){
     populateAlphabets();
-    //populateRandomImages();
+    selectedList(listItem.learnAlphabet);
   }
   init();
 
-})(window);
+//})(window);
