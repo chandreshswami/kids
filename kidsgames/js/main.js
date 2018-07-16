@@ -154,7 +154,7 @@
 
         for(var j=0; j < allImagesList[alphabet].length; j++){
           var img = getImagePath() + allImagesList[alphabet][j];
-          pool.push(getImage(img, 200, 200));
+          pool.push(createList('alphabetImage', getImage(img, 200, 200)));
         }
       }
     }
