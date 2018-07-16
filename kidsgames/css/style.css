@@ -1,0 +1,21 @@
+.listContainer li {
+	border: 1px solid #dcdcdc;
+	margin: 2px;
+	padding: 2px;
+}
+
+.listContainer.aplhabetsContainer li {
+	width: 80px;
+	height: 80px;
+	text-align: center;
+	vertical-align: middle;
+	background: #ffffff;
+}
+
+.listContainer.aplhabetsContainer li  a {
+	width: 80px;
+	height: 80px;
+	text-align: center;
+	vertical-align: middle;
+	display: table-cell;
+}
