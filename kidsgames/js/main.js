@@ -100,6 +100,14 @@
     return '<img width="'+ width +'" height="'+ height +'" src="'+ path +'"></img>';
   }
 
+  function createUnorderedList(id, classes, list){
+    return '<ul id="' + id + '" class="' + classes + '">' + list + '</ul>';
+  }
+
+  function createList(classes, txt){
+    return '<li class="' + classes + '">' + txt + '</li>';
+  }
+
   function selecteAlphabetImages(){
     var imagePath = getImagePath(),
     selectedAlphabet = app.selected.alphabet,
@@ -108,9 +116,9 @@
 
     for(var i = 0; i < selectedAlphabetImages.length; i++){
       var img = getImagePath() + selectedAlphabetImages[i];
-      alphabetImages.push(getImage(img, 200, 200));
+      alphabetImages.push(createList('alphabetImage', getImage(img, 200, 200)));
     }
-    alphabetImagesContainer.innerHTML = alphabetImages.join('');
+    alphabetImagesContainer.innerHTML = createUnorderedList('alphabetList', '', alphabetImages.join(''));
   }
 
   function populateRandomImages() {
