@@ -56,7 +56,6 @@
   function selectAlphabet(selectedAlphabet) {
     var dataKey = this.getAttribute("data-key");
     app.selected.alphabet = dataKey;
-    $("#selectedAlphabet").innerHTML = app.selected.alphabet;
     selecteAlphabetImages();
   }
 
@@ -76,7 +75,9 @@
 
   function getAlphabetLink(alphabet){
     var path = getImagePath() + alphabet + '.png';
-    return '<li><a href="javascript:void(0)" data-key="' + alphabet + '">' + getImage(path) + '</a></li>';
+    var link = '<a href="javascript:void(0)" data-key="' + alphabet + '">' + getImage(path) + '</a>';
+    //return '<li><a href="javascript:void(0)" data-key="' + alphabet + '">' + getImage(path) + '</a></li>';
+    return createList("", link);
   }
 
   function populateAlphabets() {
@@ -118,7 +119,7 @@
       var img = getImagePath() + selectedAlphabetImages[i];
       alphabetImages.push(createList('alphabetImage', getImage(img, 200, 200)));
     }
-    alphabetImagesContainer.innerHTML = createUnorderedList('alphabetList', '', alphabetImages.join(''));
+    alphabetImagesContainer.innerHTML = createUnorderedList('alphabetList', 'list-inline', alphabetImages.join(''));
   }
 
   function populateRandomImages() {
