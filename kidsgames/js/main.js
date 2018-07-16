@@ -2,17 +2,43 @@
   'use strict';
 
   var imageExtension = {
-    "png": ".png"
-  };
-  var alphabetsListContainer = document.getElementById('alphabetsListContainer');
-  var randomImagesContainer = document.getElementById('randomImagesContainer');
-
-  var imagesList = {
-    'a': '',
-    'b': ''
-  };
-
-  var app = {
+    "png": ".png",
+    "jpg": ".jpg",
+    "jpeg": ".jpeg",
+    "gif": ".gif"
+  },
+  alphabetsListContainer = document.getElementById('alphabetsListContainer'),
+  alphabetImagesContainer = document.getElementById('alphabetImagesContainer'),
+  randomImagesContainer = document.getElementById('randomImagesContainer'),
+  imagesList = {
+    'a': ['aForAeroplane.png', 'aForAligator.jpg', 'aForAnkel.png', 'aForAnt.jpg', 'aForApricot.jpg', 'aForApron.jpg', 'aForAxe.jpg'],
+    'b': ['bForBalloons.jpg', 'bForBamboo.png', 'bForBarn.jpg', 'bForBat.jpg', 'bForBeach.jpg', 'bForBoy.jpg'],
+    'c': ['cForCamel.jpg', 'cForCamera.jpg', 'cForCandel.jpg', 'cForCarrot.jpg', 'cForCaterpillar.jpg', 'cForClock.png', 'cForCorn.jpg'],
+    'd': ['dForDig.jpg', 'dForDinosaur.jpg', 'dForDonkey.jpg'],
+    'e': ['eForEgg.jpg', 'eForElephant.png', 'eForEngine.jpg', 'eForEnvelope.jpg'],
+    'f': ['fForFire.jpg', 'fForFish.jpg', 'fForFlower.jpg', 'fForFox.jpg', 'fForFrog.jpg'],
+    'g': ['gForGoat.jpg', 'gForGoose.jpg', 'gForGrapes.jpg', 'gForGrass.jpg', 'gForGuitar.jpg'],
+    'h': ['hForHat.png', 'hForHen.jpg', 'hForHive.jpg', 'hForHome.jpg'],
+    'i': ['iForIcecream.jpg', 'iForIgloo.jpg', 'iForInkpot.jpg', 'iForIron.jpg'],
+    'j': ['jForJackal.jpg', 'jForJaguar.jpg', 'jForJelly.jpg', 'jForJug.jpg'],
+    'k': [],
+    'l': [],
+    'm': [],
+    'n': [],
+    'o': [],
+    'p': [],
+    'q': [],
+    'r': [],
+    's': [],
+    't': [],
+    'u': [],
+    'v': [],
+    'w': [],
+    'x': [],
+    'y': [],
+    'z': []
+  },
+  app = {
     listOfAlphabets : ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'w', 'x', 'y', 'z'],
     selected: {
       alphabet: 'a',
@@ -31,6 +57,7 @@
     var dataKey = this.getAttribute("data-key");
     app.selected.alphabet = dataKey;
     $("#selectedAlphabet").innerHTML = app.selected.alphabet;
+    selecteAlphabetImages();
   }
 
   function attachClickHandlersOnListAnchors(){
@@ -53,8 +80,8 @@
   }
 
   function populateAlphabets() {
-    var listOfAlphabets = app.listOfAlphabets;
-    var list = [];
+    var listOfAlphabets = app.listOfAlphabets,
+    list = [];
 
     if(listOfAlphabets !== undefined && listOfAlphabets.length > 0) {
       for(var i=0; i < listOfAlphabets.length; i++){
@@ -69,14 +96,27 @@
     return 'images/';
   }
 
-  function getImage(path){
-    return '<img src="'+ path +'"></img>';
+  function getImage(path, width, height){
+    return '<img width="'+ width +'" height="'+ height +'" src="'+ path +'"></img>';
+  }
+
+  function selecteAlphabetImages(){
+    var imagePath = getImagePath(),
+    selectedAlphabet = app.selected.alphabet,
+    selectedAlphabetImages = imagesList[selectedAlphabet],
+    alphabetImages = [];
+
+    for(var i = 0; i < selectedAlphabetImages.length; i++){
+      var img = getImagePath() + selectedAlphabetImages[i];
+      alphabetImages.push(getImage(img, 200, 200));
+    }
+    alphabetImagesContainer.innerHTML = alphabetImages.join('');
   }
 
   function populateRandomImages() {
-    var imagePath = getImagePath();
-    var listOfAlphabets = app.listOfAlphabets;
-    var images = [];
+    var imagePath = getImagePath(),
+    listOfAlphabets = app.listOfAlphabets,
+    images = [];
 
     for(var i = 0; i < listOfAlphabets.length; i++){
       var img = getImagePath() + listOfAlphabets[i] + imageExtension.png;
@@ -87,7 +127,7 @@
 
   function init(){
     populateAlphabets();
-    populateRandomImages();
+    //populateRandomImages();
   }
   init();
 
