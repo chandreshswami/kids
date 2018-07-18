@@ -25,22 +25,22 @@
     'h': ['hForHat.png', 'hForHen.jpg', 'hForHive.jpg', 'hForHome.jpg'],
     'i': ['iForIcecream.jpg', 'iForIgloo.jpg', 'iForInkpot.jpg', 'iForIron.jpg'],
     'j': ['jForJackal.jpg', 'jForJaguar.jpg', 'jForJelly.jpg', 'jForJug.jpg'],
-    'k': [],
-    'l': [],
-    'm': [],
-    'n': [],
-    'o': [],
-    'p': [],
-    'q': [],
-    'r': [],
-    's': [],
-    't': [],
-    'u': [],
-    'v': [],
-    'w': [],
-    'x': [],
-    'y': [],
-    'z': []
+    'k': ['kForKangroo.jpg','kForKennel.jpg','kForKettle.jpg','kForKey.jpg','kForKing.png','kForKite.jpg','kForKnee.jpg','kForKnife.jpg'],
+    'l': ['lforLadder.jpg','lForLamp.jpg','lForLeaf.jpg','lForLeg.jpg','lForLion.jpg','lForLock.jpg','lForLog.jpg','lForLotus.jpg'],
+    'm': ['mForMask.png','mForMitten.jpg','mForMoon.jpg','mForMouse.jpg','mForMushroom.png'],
+    'n': ['nFor.jpg','nForNail.jpg','nForNest.jpg','nForNet.jpg','nForNoodles.jpg','nForNose.jpg','nForNurse.jpg'],
+    'o': ['oFor.jpg','oForOctopus.png','oForOnion.jpg','oForOrange.png','oForOstrich.jpg','oForOx.jpg'],
+    'p': ['pForPanda.jpg','pForParrot.jpg','pForPeacock.jpg','pForPear.jpg','pForPeigon.jpg','pForPenguin.jpg','pForPig.jpg','pForPinapple.jpg','pForPumpkin.jpg'],
+    'q': ['q.png','qForQuail.jpg','qForQueen.png','qForquestion.jpg','qForQuilt.jpg','qForQuite.jpg',''],
+    'r': ['rForRabbit.jpg','rForRadish.jpg','rForRainbow.jpg','rForReindeer.jpg','rForRobot.png','rForRocket.jpg','rForRope.jpg','rForRose.jpg'],
+    's': ['sForShark.png','sForShip.jpg','sForShoes.jpg','sForsnail.jpg','sForSnake.jpg','sForSpider.png','sForsun.png','sForSunflower.jpg'],
+    't': ['tForTap.jpg','tForTelephone.jpg','tForTent.jpg','tForTiger.jpg','tForTorch.jpg','tForTrumpet.jpg','tForTurtle.jpg'],
+    'u': ['uForUmbrella.jpg','uForUnicorn.jpg','uForUniform.jpg','uForUtensils.jpg'],
+    'v': ['vForvacuumCleaner.jpg','vForVan.jpg','vForVase.jpg','vForVest.jpg','vForViolin.jpg','vForVolcano.jpg','vForVulture.jpg'],
+    'w': ['wForWalnut.jpg','wForWalrus.jpg','wForWatch.jpg','wForWatermelon.jpg','wForWaves.jpg','wForWell.jpg','wForwindow.jpg'],
+    'x': ['xForxmassTree.png','xForXray.jpg','xForXylophone.jpg'],
+    'y': ['yForYak.jpg','yForYalk.jpg','yForYarn.jpg','yForYam.jpg','yForYawn.jpg'],
+    'z': ['zForZebra.jpg','zForZero.jpg','zForZipper.png','zForZoo.jpg','zForZigZag.jpg']
   },
   app = {
     listOfAlphabets : ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'],
@@ -56,6 +56,10 @@
   var $ = function (selector) {
     return document.querySelector(selector);
   };
+
+  function getDataKey() {
+      var dataKey = this.getAttribute("data-key")
+  }
 
   function selectAlphabet(selectedAlphabet) {
     var dataKey = this.getAttribute("data-key");
@@ -77,6 +81,12 @@
       randomImagesContainer.innerHTML = createUnorderedList('alphabetList', 'list-inline', randomImagesArray.join(''));
     }
   }
+  
+  //To Compare Alphabate Images
+  function compareImagesAlphabate() {
+      
+  }
+  
 
   function attachClickHandlersOnListAnchors(){
 
@@ -117,7 +127,7 @@
   }
 
   function getImage(path, width, height){
-    return '<img width="'+ width +'" height="'+ height +'" src="'+ path +'"></img>';
+    return '<img width="'+ width +'" height="'+ height +'" src="'+ path +' data-key="'+ data-key +'"></img>';
   }
 
   function createUnorderedList(id, classes, list){
@@ -197,6 +207,7 @@
     var allAlphabetImages = getRandomImagesfromPool(),
     selectedAlphabetImages = getSelectedAlphabetImages(),
     randomImages = getRandom(allAlphabetImages, 15),
+    consol.lo
     mergedImages = selectedAlphabetImages.concat(randomImages);
 
     return shuffle(mergedImages);
