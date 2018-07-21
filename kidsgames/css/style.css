@@ -4,6 +4,9 @@
 	padding: 2px;
 	border-radius: 5px;
 }
+.listContainer ul li:hover {
+	border: 1px solid #888888;
+}
 
 .listContainer.aplhabetsContainer li {
 	width: 80px;
@@ -13,6 +16,7 @@
 	background: #ffffff;
 	margin: 0 0 5px 5px;
 }
+
 
 .listContainer.aplhabetsContainer li  a {
 	width: 80px;

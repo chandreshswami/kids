@@ -126,8 +126,12 @@
     return 'images/';
   }
 
-  function getImage(path, width, height){
-    return '<img width="'+ width +'" height="'+ height +'" src="'+ path +' data-key="'+ data-key +'"></img>';
+  function getImage(path, width, height, key, title){
+    width = width || '';
+    height = height || '';
+    key = key || 'none';
+    title = title || '';
+    return '<img src="'+ path +'" width="'+ width +'" height="'+ height +'" data-key="'+ key +'" title="'+ title +'"></img>';
   }
 
   function createUnorderedList(id, classes, list){
@@ -146,7 +150,7 @@
 
     for(var i = 0; i < selectedAlphabetImages.length; i++){
       var img = imagePath + selectedAlphabetImages[i];
-      alphabetImages.push(createList('alphabetImage', getImage(img, 200, 200)));
+      alphabetImages.push(createList('alphabetImage', getImage(img, 200, 200, selectedAlphabet, selectedAlphabetImages[i])));
     }
 
     return alphabetImages;
@@ -164,7 +168,7 @@
 
         for(var j=0; j < allImagesList[alphabet].length; j++){
           var img = getImagePath() + allImagesList[alphabet][j];
-          pool.push(createList('alphabetImage', getImage(img, 200, 200)));
+          pool.push(createList('alphabetImage', getImage(img, 200, 200, alphabet, allImagesList[alphabet][j])));
         }
       }
     }
@@ -207,7 +211,6 @@
     var allAlphabetImages = getRandomImagesfromPool(),
     selectedAlphabetImages = getSelectedAlphabetImages(),
     randomImages = getRandom(allAlphabetImages, 15),
-    consol.lo
     mergedImages = selectedAlphabetImages.concat(randomImages);
 
     return shuffle(mergedImages);
