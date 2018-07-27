@@ -31,7 +31,7 @@
     'n': ['nFor.jpg','nForNail.jpg','nForNest.jpg','nForNet.jpg','nForNoodles.jpg','nForNose.jpg','nForNurse.jpg'],
     'o': ['oFor.jpg','oForOctopus.png','oForOnion.jpg','oForOrange.png','oForOstrich.jpg','oForOx.jpg'],
     'p': ['pForPanda.jpg','pForParrot.jpg','pForPeacock.jpg','pForPear.jpg','pForPeigon.jpg','pForPenguin.jpg','pForPig.jpg','pForPinapple.jpg','pForPumpkin.jpg'],
-    'q': ['q.png','qForQuail.jpg','qForQueen.png','qForquestion.jpg','qForQuilt.jpg','qForQuite.jpg',''],
+    'q': ['q.png','qForQuail.jpg','qForQueen.png','qForquestion.jpg','qForQuilt.jpg','qForQuite.jpg'],
     'r': ['rForRabbit.jpg','rForRadish.jpg','rForRainbow.jpg','rForReindeer.jpg','rForRobot.png','rForRocket.jpg','rForRope.jpg','rForRose.jpg'],
     's': ['sForShark.png','sForShip.jpg','sForShoes.jpg','sForsnail.jpg','sForSnake.jpg','sForSpider.png','sForsun.png','sForSunflower.jpg'],
     't': ['tForTap.jpg','tForTelephone.jpg','tForTent.jpg','tForTiger.jpg','tForTorch.jpg','tForTrumpet.jpg','tForTurtle.jpg'],
