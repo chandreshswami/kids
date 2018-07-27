@@ -1,0 +1,12 @@
+<h3>List of all Tasks</h3>
+{{#each tasks}}
+	<div class="card card-body mb-2">
+		<h4>Task ToDo: {{name}}</h4>
+		<p> Details: {{details}}</p>
+		<p>Status: {{status}}</p>
+		<a class="btn btn-dark" href="/idea/edit/{{tasksId}}">Edit</a>
+	</div>
+
+{{else}}
+	<p>No Tasks listed</p>
+{{/each}}
